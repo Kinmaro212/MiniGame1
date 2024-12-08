@@ -1,66 +1,179 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-*{
-    margin:0;
+* {
+    margin: 0;
     padding: 0;
-    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-body{
+body {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-position: center;
-    background-size: cover;
+    background: linear-gradient(135deg, #56CCF2, #2F80ED);
+    color: #fff;
+    text-align: center;
 }
 
-.game_infos{
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.game_infos {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;    
+    width: 100%;
+    max-width: 500px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-.container{
+.container {
     height: 400px;
     width: 500px;
-    border: 1px solid #999;
-    cursor: crosshair;
+    border: 3px solid #fff;
+    border-radius: 10px;
     position: relative;
-    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden; /* Empêche les cibles de dépasser */
+    cursor: crosshair;
     display: flex;
-    align-items: center;
     justify-content: center;
-    background-color: #fff;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    border-radius: 6px;
-    overflow: hidden; /* afin que le cursor en crosshair ne sorte pas de la zone de jeux  */
-
+    align-items: center;
 }
 
+button {
+    padding: 12px 25px;
+    background-color: #27AE60;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
 
-/* Target représentera ici la cible */
-#target{
+button:hover {
+    background-color: #219653;
+    transform: scale(1.05);
+}
+
+button:active {
+    background-color: #1E8449;
+    transform: scale(1);
+}
+
+#target {
     height: 60px;
     width: 60px;
     position: absolute;
-    transition: 0.25s;
+    transition: transform 0.2s ease, top 0.2s ease, left 0.2s ease;
     animation: animateTarget 10s infinite;
-    
+
 }
 
-button{
-    padding:10px 20px;
-    margin-bottom:20px;
-    background-color: #3C7103;
-    border: 0;
-    color: #fff;
-    border-radius: 6px;
-    cursor: pointer;
+#target:hover {
+    transform: scale(1.1);
 }
 
-@keyframes animateTarget{
-    to{
+.container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.3), rgba(0,0,0,0));
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes animateTarget {
+    to {
         transform: translateY(-200px) rotate(90deg);
     }
+}
+/* Le style global du header */
+.header {
+    width: 100%;
+    height: 250px; 
+    background-color: #2d3e50; /* Un fond sombre */
+    color: white; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    position: relative; /* Nécessaire pour la gestion des éléments à l'intérieur */
+    overflow: hidden; /* Cache tout élément qui dépasse le header */
+    margin-bottom: 50px; 
+}
+
+/* Le contenu du header (titre et description) */
+.header-content {
+    z-index: 1; /* Assure que le texte sera au-dessus de tout autre élément */
+}
+
+/* Le style du titre */
+.header h1 {
+    font-size: 48px;
+    font-family: 'poppins', sans-serif; 
+    margin: 0; 
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #E74C3C;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Le style de la description */
+.header p {
+    font-size: 20px; 
+    margin-top: 10px; 
+    color: #ecf0f1;
+    font-weight: 300; /* Poids léger pour le texte */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
+}
+
+/* Effet de neige tombante */
+@keyframes snowFall {
+    0% {
+        transform: translateY(-10px); /* Commence en haut */
+    }
+    100% {
+        transform: translateY(100vh); /* Termine en bas de l'écran */
+    }
+}
+
+
+
+
+/* Effet de pulsation pour donner un effet au texte */
+@keyframes pulse {
+    0% {
+        transform: scale(1); /* Taille normale */
+    }
+    50% {
+        transform: scale(1.1); /* Agrandissement à 110% */
+    }
+    100% {
+        transform: scale(1); /* Retour à la taille normale */
+    }
+}
+
+/* Appliquer l'animation de pulsation au titre */
+.header h1 {
+    animation: pulse 2s ease-in-out infinite; /* Animation en boucle pour l'effet de pulsation */
+}
+
+/* Ajout d'un fond dégradé léger pour un effet lumineux */
+.header {
+    background: linear-gradient(45deg, rgba(44, 62, 80, 1) 30%, rgba(52, 152, 219, 1) 90%);
+
 }
