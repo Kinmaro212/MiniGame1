@@ -11,3 +11,4 @@ Bienvenue dans ce jeu de tir festif ! L'objectif est de cliquer sur les cibles q
 - Animation festive et design sobre.
 - Compteur de score et minuterie en temps réel.
 - Arrêt automatique du jeu lorsque le temps est écoulé.
+___
